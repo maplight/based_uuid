@@ -13,11 +13,11 @@ module BasedUUID
     end
 
     class_methods do
-      def has_based_uuid(prefix: nil, uuid_column: primary_key)
+      def has_based_uuid(prefix: nil, uuid_column: nil)
         include ModelExtensions
 
         self._based_uuid_prefix = prefix
-        self._based_uuid_column = uuid_column
+        self._based_uuid_column = uuid_column || primary_key
 
         BasedUUID.register_model_prefix(prefix, self) if prefix
       end
